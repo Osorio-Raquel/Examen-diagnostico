@@ -24,7 +24,6 @@
   </div>
 </template>
 
-
 <script>
 import gsap from "gsap";
 
@@ -71,11 +70,21 @@ export default {
         await new Promise((resolve) => setTimeout(resolve, delay));
       }
     },
-    login() {
-      if (this.username === 'admin' && this.password === 'admin') {
-        this.loginFailed = false;
-        this.transitionToRegisterPage();
-      } else {
+    async login() {
+      try {
+        const response = await fetch("http://localhost/login.php");
+        const users = await response.json();
+
+        const user = users.find(u => u.Username === this.username && u.Pass === this.password);
+
+        if (user) {
+          this.loginFailed = false;
+          this.transitionToRegisterPage();
+        } else {
+          this.loginFailed = true;
+        }
+      } catch (error) {
+        console.error("Error al consultar la API:", error);
         this.loginFailed = true;
       }
     },
@@ -93,6 +102,7 @@ export default {
   }
 };
 </script>
+
 
 <style>
 /* 🔹 Fuentes generales */

@@ -103,9 +103,9 @@
       <div class="form-group">
         <label for="turno">Turno de la Escuela</label>
         <select v-model="student.turno" id="turno" required>
-          <option value="Mañana">Mañana</option>
-          <option value="Tarde">Tarde</option>
-          <option value="Noche">Noche</option>
+          <option v-for="turno in turnos" :key="turno.Id_Sch_Shift" :value="turno.School_Shift">
+        {{ turno.School_Shift }}
+      </option>
         </select>
       </div>
 
@@ -146,8 +146,9 @@ export default {
         tipo: ''
       },
       escuelas: [],
-      campuses: ['Campus A', 'Campus B', 'Campus C'],
-      carreras: ['Ingeniería', 'Medicina', 'Derecho', 'Arquitectura']
+      campuses: [],
+      carreras: [],
+      turnos: []
     };
   },
   mounted() {
@@ -156,6 +157,30 @@ export default {
       .then(data => {
         // Filtrar solo los elementos donde Is_Deleted sea 0
         this.escuelas = data.filter(escuela => escuela.Is_Deleted === 0);
+      })
+      .catch(error => console.error("Error al obtener los datos:", error));
+
+      fetch("http://localhost/api_campuses.php")
+      .then(response => response.json())
+      .then(data => {
+        // Filtrar solo los elementos donde Is_Deleted sea 0
+        this.campuses = data.filter(campus => campus.Is_Deleted === 0);
+      })
+      .catch(error => console.error("Error al obtener los datos:", error));
+
+      fetch("http://localhost/api_careers.php")
+      .then(response => response.json())
+      .then(data => {
+        // Filtrar solo los elementos donde Is_Deleted sea 0
+        this.carreras = data.filter(carrera => carrera.Is_Deleted === 0);
+      })
+      .catch(error => console.error("Error al obtener los datos:", error));
+
+      fetch("http://localhost/api_sch_shifts.php")
+      .then(response => response.json())
+      .then(data => {
+        // Filtrar solo los elementos donde Is_Deleted sea 0
+        this.turnos = data.filter(turno => turno.Is_Deleted === 0);
       })
       .catch(error => console.error("Error al obtener los datos:", error));
   },

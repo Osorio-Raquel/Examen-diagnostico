@@ -69,16 +69,20 @@
         </div>
 
         <div class="form-group">
-          <label for="bloodType">Tipo de Sangre</label>
-          <select v-model="student.bloodType" id="bloodType" required>
-            <option value="A+">A+</option>
-            <option value="O+">O+</option>
-            <option value="B+">B+</option>
-            <option value="AB+">AB+</option>
-            <option value="A-">A-</option>
-            <option value="O-">O-</option>
-            <option value="B-">B-</option>
-            <option value="AB-">AB-</option>
+          <label for="antigen">Grupo Sanguíneo</label>
+          <select v-model="student.antigen" id="antigen" required>
+            <option value="A">A</option>
+            <option value="O">O</option>
+            <option value="B">B</option>
+            <option value="AB">AB</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="rhFactor">Factor Rh</label>
+          <select v-model="student.rhFactor" id="rhFactor" required>
+            <option value="+">Positivo (+)</option>
+            <option value="-">Negativo (-)</option>
           </select>
         </div>
       </form>
@@ -102,6 +106,15 @@
           <option value="Mañana">Mañana</option>
           <option value="Tarde">Tarde</option>
           <option value="Noche">Noche</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Tipo la Escuela</label>
+        <select v-model="student.tipo" id="tipo" required>
+          <option value="Privada">Privada</option>
+          <option value="Fiscal">Fiscal</option>
+          <option value="Convenio">Convenio</option>
         </select>
       </div>
     </div>
@@ -129,7 +142,8 @@ export default {
         bloodType: '',
         escuela: '',
         anoGraduacion: '',
-        turno: ''
+        turno: '',
+        tipo: ''
       },
       campuses: ['Campus A', 'Campus B', 'Campus C'],
       carreras: ['Ingeniería', 'Medicina', 'Derecho', 'Arquitectura']
@@ -145,7 +159,6 @@ export default {
 </script>
 
 <style scoped>
-/* Fondo limpio con gradiente sutil */
 .registro-container {
   background: #e8f1f9;
   color: #333;
@@ -160,7 +173,6 @@ export default {
   height: 85vh;
 }
 
-/* Título principal estilizado */
 h1 {
   text-align: center;
   font-size: 2.8em;
@@ -168,7 +180,6 @@ h1 {
   color: #0056b3;
 }
 
-/* Sección de formulario estilizada */
 .form-section {
   margin-bottom: 30px;
   padding: 20px;
@@ -185,7 +196,6 @@ h2 {
   text-decoration: underline;
 }
 
-/* Grupo de campos */
 .form-group {
   margin-bottom: 20px;
 }

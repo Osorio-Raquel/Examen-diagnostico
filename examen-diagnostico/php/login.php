@@ -8,7 +8,7 @@ $password = "";  // Contraseña de la base de datos
 $dbname = "pruebas";  // Nombre de tu base de datos
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-
+              q
 if ($conn->connect_error) {
     die(json_encode(["success" => false, "message" => "Error de conexión a la base de datos"]));
 }

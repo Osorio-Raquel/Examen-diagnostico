@@ -3,7 +3,7 @@ $host = 'localhost';
 $port = 3306;
 $db = 'tw2_diagnos';
 $user = 'root';
-$pass = '';
+$pass = 'Saeyoung707';
 
 $mysqli = new mysqli($host, $user, $pass, $db, $port);
 

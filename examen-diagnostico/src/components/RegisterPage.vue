@@ -110,13 +110,13 @@
       </div>
 
       <div class="form-group">
-        <label for="tipo">Tipo la Escuela</label>
-        <select v-model="student.tipo" id="tipo" required>
-          <option value="Privada">Privada</option>
-          <option value="Fiscal">Fiscal</option>
-          <option value="Convenio">Convenio</option>
-        </select>
-      </div>
+    <label for="tipo">Tipo de Escuela</label>
+    <select v-model="student.tipo" id="tipo" required>
+      <option v-for="tipo in escuelas" :key="tipo.Id_Sch_Type" :value="tipo.School_Type">
+        {{ tipo.School_Type }}
+      </option>
+    </select>
+  </div>
     </div>
 
     <button @click="submitForm" class="submit-btn">Registrar</button>
@@ -145,9 +145,19 @@ export default {
         turno: '',
         tipo: ''
       },
+      escuelas: [],
       campuses: ['Campus A', 'Campus B', 'Campus C'],
       carreras: ['Ingeniería', 'Medicina', 'Derecho', 'Arquitectura']
     };
+  },
+  mounted() {
+    fetch("http://localhost/api_school_types.php") // Cambia la URL según tu API
+      .then(response => response.json())
+      .then(data => {
+        // Filtrar solo los elementos donde Is_Deleted sea 0
+        this.escuelas = data.filter(escuela => escuela.Is_Deleted === 0);
+      })
+      .catch(error => console.error("Error al obtener los datos:", error));
   },
   methods: {
     submitForm() {

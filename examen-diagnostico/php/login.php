@@ -4,10 +4,7 @@ include 'db.php';
 header("Access-Control-Allow-Origin: *"); 
 header("Content-Type: application/json; charset=UTF-8");
 
-// $servername = "localhost";  // Cambia según tu configuración
-// $username = "root";  // Usuario de la base de datos
-// $password = "";  // Contraseña de la base de datos
-// $dbname = "pruebas";  // Nombre de tu base de datos
+
 
 // $conn = new mysqli($servername, $username, $password, $dbname);
 
